@@ -2,7 +2,8 @@
 import { onMount } from "svelte";
 import { settings } from "$stores";
 
-let canvasSize: number;
+const canvasSize = 1000;
+let canvasViewportSize: number;
 let radius: number;
 
 // Setup
@@ -17,7 +18,7 @@ $: if (i >= $settings.iterations) $settings.running = false;
 
 onMount(async () => {
 	// Setup canvas
-	canvasSize = Math.min(window.innerWidth, window.innerHeight);
+	canvasViewportSize = Math.min(window.innerWidth, window.innerHeight);
 	radius = canvasSize / 2 - 50;
 
 	ctx = canvas.getContext("2d")!;
@@ -83,4 +84,12 @@ async function sleep(ms: number) {
 }
 </script>
 
-<canvas bind:this={canvas} width={canvasSize} height={canvasSize} class="flex-1 outline" id="canvas" />
+<canvas
+	bind:this={canvas}
+	width={canvasSize}
+	height={canvasSize}
+	class="flex-1 outline"
+	style:width={canvasViewportSize}
+	style:height={canvasViewportSize}
+	id="canvas"
+/>

@@ -84,12 +84,13 @@ async function sleep(ms: number) {
 }
 </script>
 
-<canvas
-	bind:this={canvas}
-	width={canvasSize}
-	height={canvasSize}
-	class="flex-1 outline"
-	style:width="{canvasViewportSize}px"
-	style:height="{canvasViewportSize}px"
-	id="canvas"
-/>
+<div style:width="{canvasViewportSize}px" style:height="{canvasViewportSize}px" class="flex-1 outline overflow-hidden">
+	<canvas
+		bind:this={canvas}
+		width={canvasSize}
+		height={canvasSize}
+		id="canvas"
+		style:width="{canvasViewportSize}px"
+		style:height="{canvasViewportSize}px"
+	/>
+</div>

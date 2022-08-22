@@ -89,7 +89,7 @@ async function sleep(ms: number) {
 	width={canvasSize}
 	height={canvasSize}
 	class="flex-1 outline"
-	style:width={canvasViewportSize}
-	style:height={canvasViewportSize}
+	style:width="{canvasViewportSize}px"
+	style:height="{canvasViewportSize}px"
 	id="canvas"
 />

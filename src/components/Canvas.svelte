@@ -21,10 +21,10 @@ onMount(async () => {
 	radius = canvasSize / 2 - 50;
 
 	ctx = canvas.getContext("2d")!;
-	setupCanvas();
+	setupCanvas(true);
 
 	settings.subscribe(() => {
-		setupCanvas();
+		setupCanvas(i === 0);
 
 		if ($settings.running) requestAnimationFrame(draw);
 		else if ($settings.hasResetted) {
@@ -53,9 +53,11 @@ async function draw(frame: number) {
 	if ($settings.running && i < $settings.iterations) requestAnimationFrame(draw);
 }
 
-function setupCanvas() {
-	ctx.fillStyle = $settings.bgColor;
-	ctx.fillRect(0, 0, canvasSize, canvasSize);
+function setupCanvas(renewBg = false) {
+	if (renewBg) {
+		ctx.fillStyle = $settings.bgColor;
+		ctx.fillRect(0, 0, canvasSize, canvasSize);
+	}
 
 	ctx.fillStyle = $settings.color;
 	ctx.strokeStyle = $settings.color;
